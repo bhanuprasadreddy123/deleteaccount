@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Anger Management App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 14px;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e43f3f;
+        }
+        .alternative {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .alternative a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .alternative a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Delete Your Account</h2>
+        <p>We're sad to see you go. Please fill out the form below to delete your account.</p>
+        
+        <div class="warning">
+            <strong>⚠️ Important:</strong> Deleting your account is permanent and cannot be undone. All your data, including journal entries, progress tracking, and personal information will be permanently removed.
+        </div>
+
+        <form id="deleteForm" onsubmit="return handleDelete(event)">
+            <input type="text" id="name" placeholder="Enter your name" required>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <textarea id="reason" placeholder="Why are you leaving? (Optional)"></textarea>
+            <button type="submit">Delete My Account</button>
+        </form>
+
+        <div class="alternative">
+            <p>Need help instead? <a href="mailto:support@angermanagementapp.com">Contact our support team</a></p>
+            <p>Or <a href="privacy_policy.html">read our Privacy Policy</a> to understand your data rights</p>
+        </div>
+    </div>
+
+    <script>
+        function handleDelete(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Create confirmation message
+            const confirmationMessage = `
+                <div style="text-align: center; margin-top: 20%; font-family: Arial, sans-serif;">
+                    <h1 style="color: #667eea;">Account Deletion Request Received</h1>
+                    <p style="font-size: 18px; margin: 20px 0;">Thank you, ${name}!</p>
+                    <p style="font-size: 16px; margin: 20px 0;">Your account deletion request has been received and will be processed within 24-48 hours.</p>
+                    <p style="font-size: 14px; color: #666; margin: 20px 0;">You will receive a confirmation email at ${email} once the process is complete.</p>
+                    <div style="background-color: #e3f2fd; padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 400px;">
+                        <p style="margin: 0; font-size: 14px;"><strong>What happens next:</strong></p>
+                        <ul style="text-align: left; margin: 10px 0;">
+                            <li>Account access will be disabled immediately</li>
+                            <li>All personal data will be deleted within 30 days</li>
+                            <li>You'll receive email confirmation</li>
+                        </ul>
+                    </div>
+                    <p style="font-size: 14px; margin-top: 30px;">
+                        <a href="mailto:support@angermanagementapp.com" style="color: #667eea;">Contact Support</a> if you have any questions.
+                    </p>
+                </div>
+            `;
+            
+            document.body.innerHTML = confirmationMessage;
+        }
+    </script>
+</body>
+</html>
